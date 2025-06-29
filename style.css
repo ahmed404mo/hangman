@@ -375,7 +375,7 @@ hr{
     margin: 10px;
     background-color: rgb(11, 87, 240);
     position: absolute;
-    top: 85%;
+    top: 82%;
     left: 7%;
     cursor: pointer;
     
@@ -384,7 +384,7 @@ hr{
 @media (max-width: 768px) {
     .hint {
         left: 7%;
-        top: 85%;
+        top: 84%;
         height: 30px;
         width: 80%;
         

@@ -1,5 +1,5 @@
 // The Sound Page
-    // document.getElementById("pro").play();
+    document.getElementById("pro").play();
 
 // Letters 
 const letters = "abcdefghijklmnopqrstuvwxyz";

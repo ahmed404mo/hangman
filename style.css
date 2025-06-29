@@ -194,6 +194,7 @@ hr{
     flex: 1;
     padding: 15px;
     text-align: center;
+    position: relative;
 
 }
 @media (max-width: 768px) {
@@ -382,10 +383,10 @@ hr{
 /* To Smail  */
 @media (max-width: 768px) {
     .hint {
-        left: 65px;
-        top: 780px;
+        left: 7%;
+        top: 90%;
         height: 30px;
-        width: 60%;
+        width: 80%;
         
     }
 }

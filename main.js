@@ -1,5 +1,5 @@
 // The Sound Page
-    document.getElementById("pro").play();
+    // document.getElementById("pro").play();
 
 // Letters 
 const letters = "abcdefghijklmnopqrstuvwxyz";
@@ -157,10 +157,22 @@ document.addEventListener("click", (e) => {
 
             }
             
-        } else {
-            
-            document.getElementById("success").play();
+        } else  {
+    document.getElementById("success").play();
+
+    // Check if player has won
+    let allGuessed = true;
+    guessSpan.forEach((span, index) => {
+        if (span.innerHTML === "" && lettesAndSpace[index] !== " ") {
+            allGuessed = false;
         }
+    });
+
+    if (allGuessed) {
+        lettersContainer.classList.add("finished");
+        winGame();
+    }
+}
 
 
     }
@@ -193,6 +205,34 @@ function endGame() {
     // document.body.appendChild(div);
     
 }
+function winGame() {
+    // Create Popup Div
+    let div = document.createElement("div");
+
+    // Create Text Node
+    let message = document.createElement("p");
+    message.textContent = `You Win! The Word Was: ${randomValueValue}`;
+    div.appendChild(message);
+
+    // Add Class On Div
+    div.className = "popup";
+
+    // Append Div To Body
+    document.body.appendChild(div);
+
+    // Create Retry Button
+    let retryButton = document.createElement("button");
+    retryButton.textContent = "Play Again";
+    retryButton.className = "retry-button";
+
+    retryButton.onclick = function () {
+        window.location.reload();
+    };
+    div.appendChild(retryButton);
+
+}
+
+
 
 // Function to update health bar
 function updateHealthBar() {
@@ -202,3 +242,46 @@ function updateHealthBar() {
 
     healthFill.style.width = healthPercentage + "%";
 }
+// button to get a hint
+
+let numberOfHints = 2;
+
+document.querySelector(".hint span").innerHTML = numberOfHints;
+const getHintButton = document.querySelector(".hint");
+
+
+getHintButton.addEventListener("click", getHint);
+
+
+function getHint() {
+    if (numberOfHints > 0) {
+        numberOfHints--;
+        document.querySelector(".hint span").innerHTML = numberOfHints;
+
+
+        if (numberOfHints === 0) {
+            getHintButton.style.pointerEvents = "none";
+            getHintButton.style.opacity = "0.5";
+        }
+
+
+        showRandomHintLetter();
+    }
+}
+
+
+function showRandomHintLetter() {
+    let theChosenWord = Array.from(randomValueValue.toLowerCase());
+    let guessSpans = document.querySelectorAll(".letters-guess span");
+
+    for (let i = 0; i < theChosenWord.length; i++) {
+        if (guessSpans[i].innerHTML === "" && theChosenWord[i] !== " ") {
+            guessSpans[i].innerHTML = theChosenWord[i];
+            break; 
+        }
+    }
+}
+
+
+
+console.log(lettesAndSpace)
